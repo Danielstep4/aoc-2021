@@ -4,4 +4,6 @@ import HydrothermalVenture from "./hydrothermal-venture";
 const DEMO_INPUT = fileReader(__dirname, true);
 const INPUT = fileReader(__dirname);
 
-// const SOLUTION = new HydrothermalVenture(DEMO_INPUT);
+const SOLUTION = new HydrothermalVenture(INPUT).findOverlap();
+
+console.log(SOLUTION);
