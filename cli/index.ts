@@ -7,9 +7,9 @@ const rl = readline.createInterface({
 });
 
 (() => {
-  const start = Date.now();
-
+  let start: number;
   rl.question("What day is it ? ", (day) => {
+    start = Date.now();
     createDayFoldar(day);
     rl.close();
   });
