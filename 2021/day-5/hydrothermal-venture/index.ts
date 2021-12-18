@@ -36,8 +36,32 @@ class HydrothermalVenture {
 
   private _extandDiagonalVecs = (coor1: Vec, coor2: Vec): Vec[] => {
     const extandedVecs: Vec[] = [];
-    // Draw it and you will understand how to finish it
+    const [minVec, maxVec, direction] = this._findMinMaxVecAndDirection(
+      coor1,
+      coor2
+    );
+
+    let currentVec = minVec;
+
+    for (let i = currentVec[Axis.Y]; i <= maxVec[Axis.Y]; i++) {
+      extandedVecs.push(currentVec);
+      currentVec = [
+        currentVec[Axis.X] + (direction === "right" ? 1 : -1),
+        currentVec[Axis.Y] + 1,
+      ];
+    }
     return extandedVecs;
+  };
+
+  private _findMinMaxVecAndDirection = (
+    coor1: Vec,
+    coor2: Vec
+  ): [Vec, Vec, string] => {
+    const minVec = coor1[Axis.Y] < coor2[Axis.Y] ? coor1 : coor2;
+    const maxVec = minVec === coor1 ? coor2 : coor1;
+    const direction = minVec[Axis.X] > maxVec[Axis.X] ? "left" : "right";
+
+    return [minVec, maxVec, direction];
   };
 
   private _checkDiagonal = (coor1: Vec, coor2: Vec) =>
